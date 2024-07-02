@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework import routers
-from api import views, category, token
+from api import views, category, token, diabetes
 
 router = routers.DefaultRouter()
 
@@ -30,6 +30,8 @@ urlpatterns = [
     # path('', include('webapp.urls')),
     # path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
+    path('api/v1/savemodel', diabetes.SaveView.as_view()),
+    path('api/v1/loadmodel', diabetes.LoadView.as_view()),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api-token-auth/', token.CustomAuthToken.as_view())
 ]
